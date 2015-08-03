@@ -1,5 +1,5 @@
 # ud-datavis
-udacity data visualization P6
+Udacity - Data Analyst Nanodegree - Project 6 - Data Visualization
 
 # Summary
 I am examining the average arrival delays by select major airlines in select major destination cities in the USA between the years 2000-2008 by day of week.  I want to examine which days of the week experienced the most and least arrival delays.  I have taken the Flight data from http://stat-computing.org/dataexpo/2009/the-data.html/ and its supplemental data (carriers.csv/airports.csv) combined data from the 3 sources, then filtered down to a small subset
