@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Udacity - Data Analyst Nanodegree - Project 6 - Data Visualization  by cmiller112000</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Udacity - Data Analyst Nanodegree - Project 6 - Data Visualization </h1>
+      <h2 class="project-tagline">Cheryl Miller - cmiller112000@sbcglobal.net</h2>
+      <a href="https://github.com/cmiller112000/ud-datavis" class="btn">View on GitHub</a>
+      <a href="https://github.com/cmiller112000/ud-datavis/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/cmiller112000/ud-datavis/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="ud-datavis" class="anchor" href="#ud-datavis" aria-hidden="true"><span class="octicon octicon-link"></span></a>ud-datavis</h1>
+
+<p>Udacity - Data Analyst Nanodegree - Project 6 - Data Visualization </p>
+
+<h1>
+<a id="summary" class="anchor" href="#summary" aria-hidden="true"><span class="octicon octicon-link"></span></a>Summary</h1>
+
+<p>I am examining the average arrival delays by select major airlines in select major destination cities in the USA between the years 2000-2008 by day of week.  I want to examine which days of the week experienced the most and least arrival delays.  I have taken the Flight data from <a href="http://stat-computing.org/dataexpo/2009/the-data.html/">http://stat-computing.org/dataexpo/2009/the-data.html/</a> and its supplemental data (carriers.csv/airports.csv) combined data from the 3 sources, then filtered down to a small subset
+of carriers as listed below, and cities below it.  The reason for filtering the data was due to the large dataset (over 2GB even filtered).  Instead I pre-processed the data and calculated the average daily arrival delay by carrier, airport, day of week and year:</p>
+
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AA</td>
+<td>American Airlines Inc.</td>
+</tr>
+<tr>
+<td>CO</td>
+<td>Continental Air Lines Inc.</td>
+</tr>
+<tr>
+<td>DL</td>
+<td>Delta Air Lines Inc.</td>
+</tr>
+<tr>
+<td>UA</td>
+<td>United Air Lines Inc.</td>
+</tr>
+<tr>
+<td>WN</td>
+<td>Southwest Airlines Co.</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Cities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"NY"</td>
+<td>["New York"]</td>
+</tr>
+<tr>
+<td>"IL"</td>
+<td>["Chicago"]</td>
+</tr>
+<tr>
+<td>"TX"</td>
+<td>["Dallas","Dallas-FtWorth","Houston","Austin"]</td>
+</tr>
+<tr>
+<td>"CA"</td>
+<td>["Los Angeles", "San Francisco"]</td>
+</tr>
+<tr>
+<td>"GA"</td>
+<td>["Atlanta"]</td>
+</tr>
+<tr>
+<td>"FL"</td>
+<td>["Miami", "Orlando"]</td>
+</tr>
+<tr>
+<td>"MA"</td>
+<td>["Boston"]</td>
+</tr>
+<tr>
+<td>"VA"</td>
+<td>["Arlington","Chantilly"]</td>
+</tr>
+</tbody>
+</table>
+
+<p>I have added long/lat data as well as merged the airport and carrier name information into a single flightdelays.json file with the following fields:</p>
+
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Field Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dest long</td>
+<td>longitude of destination airport</td>
+</tr>
+<tr>
+<td>Dest lat</td>
+<td>lat of destination airport</td>
+</tr>
+<tr>
+<td>Dest airport</td>
+<td>airport name of destination</td>
+</tr>
+<tr>
+<td>ArrDelay</td>
+<td>Arrival Delay in minutes</td>
+</tr>
+<tr>
+<td>UniqueCarrierName</td>
+<td>Air Carrier Name</td>
+</tr>
+<tr>
+<td>DayOfWeek</td>
+<td>Mon, Tues, Wed, Thu, Fri, Sat, Sun</td>
+</tr>
+<tr>
+<td>Year</td>
+<td>2000 - 2008</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<a id="design" class="anchor" href="#design" aria-hidden="true"><span class="octicon octicon-link"></span></a>Design</h1>
+
+<p>I have developed this visualization using primarily dimple.js with some d3.js tweaks based on example visualizations from <a href="http://www.dimplejs.org">http://www.dimplejs.org</a>, in particular the bubble chart and interactive legend examples.  I am displaying the average arrival delay in minutes for the selected airline carriers and major city airports.  The story board is animated by year from 2000 - 2008 and the airline carriers and/or major city  airports are available as data filters.</p>
+
+<h1>
+<a id="release-1---issues" class="anchor" href="#release-1---issues" aria-hidden="true"><span class="octicon octicon-link"></span></a>Release 1 - Issues</h1>
+
+<ul>
+<li>How to remove "year": 1.0m type tooltip due to MeasureAxis on "Year"?</li>
+<li>Filter by Airport - when reactivating, does not re-include filtered data.  Any ideas why?</li>
+<li>Both Filter by Carrier Name and Filter by Airport - when activating and de-activating filters, both re-trigger a paused animation.  Any ideas how to stop this?</li>
+</ul>
+
+<h1>
+<a id="average-arrival-delay-visualization" class="anchor" href="#average-arrival-delay-visualization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Average Arrival Delay Visualization</h1>
+
+<p><a href="https://rawgit.com/cmiller112000/ud-datavis/master/index.html">Run ud-datavis!</a></p>
+
+<h1>
+<a id="feedback" class="anchor" href="#feedback" aria-hidden="true"><span class="octicon octicon-link"></span></a>Feedback</h1>
+
+<h2>
+<a id="questions-for-reviewers" class="anchor" href="#questions-for-reviewers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Questions for Reviewers:</h2>
+
+<ul>
+<li>What do you notice in the visualization?</li>
+<li>What questions do you have about the data?</li>
+<li>What relationships do you notice?</li>
+<li>What do you think is the main take-away from this visualization?</li>
+<li>Is there something you don’t understand in the graphic?</li>
+</ul>
+
+<h1>
+<a id="resources" class="anchor" href="#resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Resources</h1>
+
+<ul>
+<li><a href="http://www.d3js.org/">http://www.d3js.org/</a></li>
+<li><a href="http://www.dimplejs.org/">http://www.dimplejs.org/</a></li>
+<li><a href="http://stat-computing.org/dataexpo/2009/the-data.html/">http://stat-computing.org/dataexpo/2009/the-data.html/</a></li>
+<li><a href="http://www.stackoverflow.com/">http://www.stackoverflow.com/</a></li>
+<li><a href="http://www.udacity.com/">http://www.udacity.com/</a></li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/cmiller112000/ud-datavis">Udacity - Data Analyst Nanodegree - Project 6 - Data Visualization </a> is maintained by <a href="https://github.com/cmiller112000">cmiller112000</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
