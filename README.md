@@ -33,9 +33,11 @@ DayOfWeek - Mon, Tues, Wed, Thu, Fri, Sat, Sun
 Year
 
 # Design
-I have developed this visualization using primarily dimple.js and d3.js based on examples visualizations from http://www.dimplejs.org
+I have developed this visualization using primarily dimple.js with some d3.js tweaks based on example visualizations from http://www.dimplejs.org, in particular the bubble chart and interactive legend examples.  I am displaying the average arrival delay in minutes for the selected airline carriers and major city airports.  The story board is animated by year from 2000 - 2008 and the airline carriers and/or major city  airports are available as data filters.
 
-I have created pausable storyboard based on selectable years, where the average arrival delay in minutes for the year is graphed by airline carrier and day of week. I have also added an interactive 'Carrier' legend selector as well as a 'Airport Name' filter.
+# Average Arrival Delay Visualization
+
+https://github.com/cmiller112000/ud-datavis/index.html
 
 # Feedback
 Questions for Reviewers:
@@ -47,8 +49,8 @@ Questions for Reviewers:
 * Is there something you don’t understand in the graphic?
 
 # Resources
-http://www.d3js.org
-http://www.dimplejs.org
-http://stat-computing.org/dataexpo/2009/the-data.html
-http://www.stackoverflow.com
-http://www.udacity.com - Data Analyst Nanodegree classes and forums
+* http://www.d3js.org
+* http://www.dimplejs.org
+* http://stat-computing.org/dataexpo/2009/the-data.html
+* http://www.stackoverflow.com
+* http://www.udacity.com - Data Analyst Nanodegree classes and forums
