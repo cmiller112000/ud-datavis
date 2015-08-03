@@ -40,14 +40,14 @@ Year | 2000 - 2008
 # Design
 I have developed this visualization using primarily dimple.js with some d3.js tweaks based on example visualizations from http://www.dimplejs.org, in particular the bubble chart and interactive legend examples.  I am displaying the average arrival delay in minutes for the selected airline carriers and major city airports.  The story board is animated by year from 2000 - 2008 and the airline carriers and/or major city  airports are available as data filters.
 
-# Release 1 - Issues
+## Release 1 - Issues
 * How to remove "year": 1.0m type tooltip due to MeasureAxis on "Year"?
 * Filter by Airport - when reactivating, does not re-include filtered data.  Any ideas why?
 * Both Filter by Carrier Name and Filter by Airport - when activating and de-activating filters, both re-trigger a paused animation.  Any ideas how to stop this?
  
 # Average Arrival Delay Visualization
 
-[Run ud-datavis!](https://rawgit.com/cmiller112000/ud-datavis/master/index.html)
+[Run Data Visualization!](https://rawgit.com/cmiller112000/ud-datavis/master/index.html)
 
 
 # Feedback
@@ -58,6 +58,10 @@ I have developed this visualization using primarily dimple.js with some d3.js tw
 * What relationships do you notice?
 * What do you think is the main take-away from this visualization?
 * Is there something you don’t understand in the graphic?
+
+Please answer by creating an issue on my github repository following the example issue under my name:
+
+https://github.com/cmiller112000/ud-datavis/issues/
 
 # Resources
 * http://www.d3js.org/
