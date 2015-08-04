@@ -85,6 +85,108 @@ Please answer by creating an issue on my github repository following the example
 
 https://github.com/cmiller112000/ud-datavis/issues/
 
+## Release 1 Responses
+
+### Shirley McAdams
+* What do you notice in the visualization?
+ * Delay times arriving flights
+* What questions do you have about the data?
+ * After clicking on some airlines and then trying to retrieve  them,it was not possible
+* What relationships do you notice?
+ * It appears Monday, Thursday & Friday have on average most delays
+* What do you think is the main take-away from this visualization?
+ * Make plans to fly Tuesday, Wednesday or Sunday
+* Is there something you don’t understand in the graphic?
+ * It is  pretty self explanatory
+   
+#### Response
+regarding the disappearing data, fixed that and will be providing a new release later today or tomorrow.
+
+### Cara Miller
+* What do you notice in the visualization?
+ * The large jump between going above the x axis and then it dropping downing into the negatives.  And the way that the shifts are any where from small to large.
+* What questions do you have about the data?
+ * What makes the difference between delay arrival time and why do the years really matter?
+* What relationships do you notice?
+ * The way that the orange dots seem to stay in the same base arrangement even with the large change in the minutes.
+* What do you think is the main take-away from this visualization?
+ * Just how much of a delay there are over the years for the different major airlines.
+* Is there something you don’t understand in the graphic?
+ * Not really.
+
+* Any Additions Comments:
+ * make the colors of the graph a little more differing because the pastel colors are to similar in saturation.
+
+#### Response
+new version is hopefully much clearer (changed the bubble chart to a line chart with line markers), hopefully this will make the day to day relationships more clear. Regarding the yellow dots remaining in same spot, if you notice, the scale changes from year to year, that may be why it appears they are remaining the same. As for the purpose of the year over year, it makes it possible to see improvement and/or degradation in arrival times over time.
+
+as for the yellow/orange color being too close, I changed the yellow to a light purple, so hopefully its easier to distinguish the different lines.
+
+### Alan McAdams
+* What do you notice in the visualization?
+ * When filtered by airline, the airline dots (info) disappears from graph and when airline re-clicked it does not reappear. If all airlines are clicked the graph goes blank and stays blank, have to refresh screen to bring back data.
+
+ * Sometimes after picking a year or airport the visualization starts scrolling again when should stay paused?
+
+* What questions do you have about the data? 
+ * None, really. It is presented clearly
+
+* What relationships do you notice?
+ * Southwest airlines started to take delays seriously in 2005 and has best showing in the list at most destinations in the following years,
+
+* What do you think is the main take-away from this visualization?
+ * Fly Southwest
+
+* Is there something you don’t understand in the graphic?
+ * It is difficult to tell which Airport is being represented in the graph because when you click the airport it stays highlighted even when the next airport is picked.
+Maybe graph titles which change with selections picked to show what airport and year is being shown??
+
+* Any Additions Comments:
+ * Very interesting!
+
+#### Response
+Thanks Alan, good feedback! I have a new version I will be uploading later today or tomorrow (waiting for feedback from class peers). This new version fixes the disappearing data issue, and makes the airport filter clearer and easier to read. I also changed the bubble graph to a line graph with line markers so that the day to day differences are more obvious. I liked the bouncing balls, but it didn't make that relationship very clear.
+
+I haven't figured out how to keep the animation paused when filtering by carrier or airport yet, still working to figure out how to do that.
+
+### JoAnna McAdams
+* What do you notice in the visualization?
+
+ * I first noticed how much easier it was to detect trends when the years flow automatically across. Not having to take my eyes off the data or trend pattern to click on different years gave a better appreciation for gaps in info. To go back and single out a year is also simple to do.
+
+* What questions do you have about the data?
+ * How to keep raw data integrity in check - i.e.: one time meaning a plane pulls away from the gate, or actually takes off?
+
+* What relationships do you notice?
+
+ * It appears to mostly remain consistently inconsistent.
+
+* What do you think is the main take-away from this visualization?
+
+ * Very smart, easy to read way to interpret what would normally be a very cumbersome data set. Very good to market / prove on time capabilities to consumer, or investors.
+
+* Is there something you don’t understand in the graphic?
+
+ * Per airport numbers were a little confusing, but that may be my system may not meet requirements.
+
+* Any Additions Comments:
+
+ * Very exciting to check this out!
+
+#### Response
+Thanks Joey! good feedback.
+
+I have a new release coming later today or tomorrow that fixes the airport selector and a few other issues (like disappearing data). Hopefully that will make it clearer. While I liked the look of the bubble chart, I changed it to a line chart with line markers. It makes the day to day relationships much clearer.
+
+Re: "How to keep raw data integrity in check - i.e.: one time meaning a plane pulls away from the gate, or actually takes off?"
+
+I'm not clear on what you are asking? The raw data I based this on had multiple 'delay' timings and some (but limited) cause indicators. However, the data set itself, even filtering down to just these carriers and airports was till almost 2GB, and would never load in the browser using the tools I've been given. So I decided to just concentrate on the average arrival delay, thinking from a consumer standpoint, that is what most people would care about. I definitely see where the airlines or regulation industry would care much more on drilling down on specific causes. Is that what you were referring to?
+
+#### Follow-up Response
+
+Yes, that is what I was referring to, and it was more industry related, but given each airline had their own criteria for the definition of on time... Well, what can you do to control that?
+
+I am really impressed with how you tamed THAT MUCH data in one file. Very nice!
 # Resources
 * http://www.d3js.org/
 * http://www.dimplejs.org/
