@@ -188,11 +188,9 @@
            // Passing a duration parameter makes the chart animate. Without
           // it there is no transition
         // Draw the line chart
+          lines.draw();
           if (pauseState === true) {
-                  lines.draw();
-          }
-          else {
-                  lines.draw(1000);
+            story.pauseAnimation()
           }
         });
 
@@ -338,11 +336,9 @@
            // Passing a duration parameter makes the chart animate. Without
           // it there is no transition
 
+          lines.draw();
           if (pauseState === true) {
-            lines.draw();
-          }
-          else{
-            lines.draw(1000);
+            story.pauseAnimation()
           }
         }
     });
