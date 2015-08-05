@@ -1,13 +1,10 @@
 <html>
 <title>Average Arrival Delay Comparisons of Select Carriers and Cities:2000-2008</title>
-<body><p>The following graph examines the average arrival delays by select major airlines in select major US destination cities between the years 2000-2008 by day of week.  I want to examine which days of the week experienced the most and least arrival delays.  
-</p>
-<p>What I found was 2000 seemed to be the worse for arrival delays with several airlines having delays on average over 10 minutes, United being the worse with over 20 minute delays.  
-</p>
-<p>From 2000 - 2003, you see a steady improvement in arrival delays, with even the worse offenders - Continental and Delta Airlines - coming in under 6 minutes on average.  Unfortunately, 2004 - 2008 saw a continual increase for all airlines except Southwest Airlines, with several airlines averaging between 10 - 18 minutes. 
-</p>
-<p>From a day per week standpoint, all airlines seemed to have their lowest delay times on Tuesdays and Saturdays, and their highest delay times on Thursdays and Fridays.  Which makes sense based on the typical busy travel days matching this finding.
-</p>
+<body>
+<p>The following graph examines the average flight arrival delays for the selected major airlines in specific major US destination cities between the years 2000-2008 by day of week.   </p>
+<p>To pause the animation, click the year on the left you want to focus on.  To restart animation, click it again.</p>
+<p>To remove a particular airline from the chart, select the colored legend box associated with the airline carrier's name. To add it back in, click it again.</p>
+<p>To remove a airport's data from the chart, select the airport's name. To add it back in, click it again.</p>
 </body>
 <div id="chartContainer">
   <script charset="utf-8" src="./lib/d3.min.js"></script>
@@ -28,6 +25,8 @@
       var defaultColor = yearIndicator.defaultColors[0];
       var indicatorColor = yearIndicator.defaultColors[2];
   
+      var pauseState = false;
+
       // Get a unique list of Carrier Names values to use when filtering
       var filterCarriers = dimple.getUniqueValues(data, "UniqueCarrierName");
       // Get a unique list of Carrier Names values to use when filtering
@@ -178,7 +177,7 @@
               d3.select(this).style("opacity", 0.2);
           } else {
               newFilters.push(e.aggField.slice(-1)[0]);
-              d3.select(this).style("opacity", 0.4);
+              d3.select(this).style("opacity", 0.8);
           }
           // Update the filters
           filterCarriers = newFilters;
@@ -271,21 +270,20 @@
         // current year instead of the label
         story.storyLabel.remove();
 
-        var pauseState = false;
         // On click of the side chart
         function onClick(e) {
           // Pause the animation
-          story.pauseAnimation();
           pauseState = true;
+          story.pauseAnimation();
           // If it is already selected resume the animation
           // otherwise pause and move to the selected month
           if (e.yValue === story.getFrameValue()) {
-            story.startAnimation();
             pauseState = false;
+            story.startAnimation();
           } else {
+            pauseState = true;
             story.goToFrame(e.yValue);
             story.pauseAnimation();
-            pauseState = true;
           }
         }
         // On tick of the main charts storyboard
