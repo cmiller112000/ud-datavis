@@ -27,8 +27,21 @@
 <h1>
 <a id="summary" class="anchor" href="#summary" aria-hidden="true"><span class="octicon octicon-link"></span></a>Summary</h1>
 
-<p>I am examining the average arrival delays by select major airlines in select major destination cities in the USA between the years 2000-2008 by day of week.  I want to examine which days of the week experienced the most and least arrival delays.  I have taken the Flight data from <a href="http://stat-computing.org/dataexpo/2009/the-data.html/">http://stat-computing.org/dataexpo/2009/the-data.html/</a> and its supplemental data (carriers.csv/airports.csv) combined data from the 3 sources, then filtered down to a small subset
-of carriers as listed below, and cities below it.  The reason for filtering the data was due to the large dataset (over 2GB even filtered).  Instead I pre-processed the data and calculated the average daily arrival delay by carrier, airport, day of week and year:</p>
+<p>I am examining the average arrival delays by select major airlines in select major US destination cities between the years 2000-2008 by day of week.  I want to examine which days of the week experienced the most and least arrival delays.  </p>
+
+<p>What I found was 2000 seemed to be the worse for arrival delays with several airlines having delays on average over 10 minutes, United being the worse with over 20 minute delays.  </p>
+
+<p>From 2000 - 2003, you see a steady improvement in arrival delays, with even the worse offenders - Continental and Delta Airlines - coming in under 6 minutes on average.  Unfortunately, 2004 - 2008 saw a continual increase for all airlines except Southwest Airlines, with several airlines averaging between 10 - 18 minutes. </p>
+
+<p>From a day per week standpoint, all airlines seemed to have their lowest delay times on Tuesdays and Saturdays, and their highest delay times on Thursdays and Fridays.  Which makes sense based on the typical busy travel days matching this finding.</p>
+
+<h1>
+<a id="design" class="anchor" href="#design" aria-hidden="true"><span class="octicon octicon-link"></span></a>Design</h1>
+
+<h2>
+<a id="dataset---flight-arrival-and-associated-supplemental-data" class="anchor" href="#dataset---flight-arrival-and-associated-supplemental-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dataset - Flight Arrival and associated supplemental data</h2>
+
+<p>I have taken the Flight data from <a href="http://stat-computing.org/dataexpo/2009/the-data.html/">http://stat-computing.org/dataexpo/2009/the-data.html/</a> and its supplemental data (carriers.csv/airports.csv) and combined data from the 3 sources.  I then filtered down to a small subset of carriers and destination cities as listed below it.  The reason for filtering the data was due to the large dataset (over 2GB even filtered).  From performance posts I found researching dimplejs and d3js, I've seen posts saying 11MB as being excessive. Instead I pre-processed the data using the append_csv.py script and calculated the average daily arrival delay by carrier, airport, day of week and year.  I was originally working with a csv file, but in researching performance issues, found the suggestion of using a json input file to limit the parsing phase required from converting csv to a json object:</p>
 
 <table>
 <thead>
@@ -104,7 +117,7 @@ of carriers as listed below, and cities below it.  The reason for filtering the 
 </tbody>
 </table>
 
-<p>I have added long/lat data as well as merged the airport and carrier name information into a single flightdelays.json file with the following fields:</p>
+<p>I added long/lat data as well as merged the airport and carrier name information into a single flightdelays.json file with the following fields:</p>
 
 <table>
 <thead>
@@ -145,13 +158,17 @@ of carriers as listed below, and cities below it.  The reason for filtering the 
 </tbody>
 </table>
 
-<h1>
-<a id="design" class="anchor" href="#design" aria-hidden="true"><span class="octicon octicon-link"></span></a>Design</h1>
-
-<p>I have developed this visualization using primarily dimple.js with some d3.js tweaks based on example visualizations from <a href="http://www.dimplejs.org">http://www.dimplejs.org</a>, in particular the bubble chart and interactive legend examples.  I am displaying the average arrival delay in minutes for the selected airline carriers and major city airports.  The story board is animated by year from 2000 - 2008 and the airline carriers and/or major city  airports are available as data filters.</p>
-
 <h2>
-<a id="release-1---issues" class="anchor" href="#release-1---issues" aria-hidden="true"><span class="octicon octicon-link"></span></a>Release 1 - Issues</h2>
+<a id="data-visualization" class="anchor" href="#data-visualization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Visualization</h2>
+
+<p>I have developed this visualization using primarily dimple.js with some d3.js tweaks based on example visualizations from <a href="http://www.dimplejs.org">http://www.dimplejs.org</a>, in particular the bubble chart and interactive legend examples. </p>
+
+<p>I created a dimple story board which is animated by year from 2000 - 2008.  The animation can be paused by selecting the year you want to pause on.  You can restart animation by selecting the year a second time.</p>
+
+<p>I also used an interactive legend by airline carrier for filtering the data points displayed, and I also created a 'chart' to handle filtering of the aggregated data by major city airports.</p>
+
+<h3>
+<a id="release-1---issues" class="anchor" href="#release-1---issues" aria-hidden="true"><span class="octicon octicon-link"></span></a>Release 1 - Issues</h3>
 
 <ul>
 <li>How to remove "year": 1.0m type tooltip due to MeasureAxis on "Year"?</li>
@@ -159,8 +176,19 @@ of carriers as listed below, and cities below it.  The reason for filtering the 
 <li>Both Filter by Carrier Name and Filter by Airport - when activating and de-activating filters, both re-trigger a paused animation.  Any ideas how to stop this?</li>
 </ul>
 
+<h3>
+<a id="release-2---fixes" class="anchor" href="#release-2---fixes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Release 2 - Fixes</h3>
+
+<ul>
+<li>How to remove "year": 1.0m type tooltip due to MeasureAxis on "Year"?</li>
+<li>Filter by Airport - when reactivating, does not re-include filtered data.  Any ideas why?</li>
+<li>Make Filter by Airport text/shape more consistent with the "Year" control.</li>
+<li>Feedback that yellow and orange series point colors are too close.  Changed 'yellow' color to light purple</li>
+<li>Changed bubble chart to a line chart with line markers to make day to day variance more prominent.</li>
+</ul>
+
 <h1>
-<a id="average-arrival-delay-visualization" class="anchor" href="#average-arrival-delay-visualization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Average Arrival Delay Visualization</h1>
+<a id="running-the-data-visualization" class="anchor" href="#running-the-data-visualization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running the Data Visualization</h1>
 
 <p><a href="https://rawgit.com/cmiller112000/ud-datavis/master/index.html">Run Data Visualization!</a></p>
 
@@ -181,6 +209,224 @@ of carriers as listed below, and cities below it.  The reason for filtering the 
 <p>Please answer by creating an issue on my github repository following the example issue under my name:</p>
 
 <p><a href="https://github.com/cmiller112000/ud-datavis/issues/">https://github.com/cmiller112000/ud-datavis/issues/</a></p>
+
+<h2>
+<a id="release-1-responses" class="anchor" href="#release-1-responses" aria-hidden="true"><span class="octicon octicon-link"></span></a>Release 1 Responses</h2>
+
+<h3>
+<a id="shirley-mcadams" class="anchor" href="#shirley-mcadams" aria-hidden="true"><span class="octicon octicon-link"></span></a>Shirley McAdams</h3>
+
+<ul>
+<li>What do you notice in the visualization?
+
+<ul>
+<li>Delay times arriving flights</li>
+</ul>
+</li>
+<li>What questions do you have about the data?
+
+<ul>
+<li>After clicking on some airlines and then trying to retrieve  them,it was not possible</li>
+</ul>
+</li>
+<li>What relationships do you notice?
+
+<ul>
+<li>It appears Monday, Thursday &amp; Friday have on average most delays</li>
+</ul>
+</li>
+<li>What do you think is the main take-away from this visualization?
+
+<ul>
+<li>Make plans to fly Tuesday, Wednesday or Sunday</li>
+</ul>
+</li>
+<li>Is there something you don’t understand in the graphic?
+
+<ul>
+<li>It is  pretty self explanatory</li>
+</ul>
+</li>
+</ul>
+
+<h4>
+<a id="response" class="anchor" href="#response" aria-hidden="true"><span class="octicon octicon-link"></span></a>Response</h4>
+
+<p>regarding the disappearing data, fixed that and will be providing a new release later today or tomorrow.</p>
+
+<h3>
+<a id="cara-miller" class="anchor" href="#cara-miller" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cara Miller</h3>
+
+<ul>
+<li>What do you notice in the visualization?
+
+<ul>
+<li>The large jump between going above the x axis and then it dropping downing into the negatives.  And the way that the shifts are any where from small to large.</li>
+</ul>
+</li>
+<li>What questions do you have about the data?
+
+<ul>
+<li>What makes the difference between delay arrival time and why do the years really matter?</li>
+</ul>
+</li>
+<li>What relationships do you notice?
+
+<ul>
+<li>The way that the orange dots seem to stay in the same base arrangement even with the large change in the minutes.</li>
+</ul>
+</li>
+<li>What do you think is the main take-away from this visualization?
+
+<ul>
+<li>Just how much of a delay there are over the years for the different major airlines.</li>
+</ul>
+</li>
+<li>
+<p>Is there something you don’t understand in the graphic?</p>
+
+<ul>
+<li>Not really.</li>
+</ul>
+</li>
+<li>
+<p>Any Additions Comments:</p>
+
+<ul>
+<li>make the colors of the graph a little more differing because the pastel colors are to similar in saturation.</li>
+</ul>
+</li>
+</ul>
+
+<h4>
+<a id="response-1" class="anchor" href="#response-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Response</h4>
+
+<p>new version is hopefully much clearer (changed the bubble chart to a line chart with line markers), hopefully this will make the day to day relationships more clear. Regarding the yellow dots remaining in same spot, if you notice, the scale changes from year to year, that may be why it appears they are remaining the same. As for the purpose of the year over year, it makes it possible to see improvement and/or degradation in arrival times over time.</p>
+
+<p>as for the yellow/orange color being too close, I changed the yellow to a light purple, so hopefully its easier to distinguish the different lines.</p>
+
+<h3>
+<a id="alan-mcadams" class="anchor" href="#alan-mcadams" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alan McAdams</h3>
+
+<ul>
+<li>
+<p>What do you notice in the visualization?</p>
+
+<ul>
+<li><p>When filtered by airline, the airline dots (info) disappears from graph and when airline re-clicked it does not reappear. If all airlines are clicked the graph goes blank and stays blank, have to refresh screen to bring back data.</p></li>
+<li><p>Sometimes after picking a year or airport the visualization starts scrolling again when should stay paused?</p></li>
+</ul>
+</li>
+<li>
+<p>What questions do you have about the data? </p>
+
+<ul>
+<li>None, really. It is presented clearly</li>
+</ul>
+</li>
+<li>
+<p>What relationships do you notice?</p>
+
+<ul>
+<li>Southwest airlines started to take delays seriously in 2005 and has best showing in the list at most destinations in the following years,</li>
+</ul>
+</li>
+<li>
+<p>What do you think is the main take-away from this visualization?</p>
+
+<ul>
+<li>Fly Southwest</li>
+</ul>
+</li>
+<li>
+<p>Is there something you don’t understand in the graphic?</p>
+
+<ul>
+<li>It is difficult to tell which Airport is being represented in the graph because when you click the airport it stays highlighted even when the next airport is picked.
+Maybe graph titles which change with selections picked to show what airport and year is being shown??</li>
+</ul>
+</li>
+<li>
+<p>Any Additions Comments:</p>
+
+<ul>
+<li>Very interesting!</li>
+</ul>
+</li>
+</ul>
+
+<h4>
+<a id="response-2" class="anchor" href="#response-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Response</h4>
+
+<p>Thanks Alan, good feedback! I have a new version I will be uploading later today or tomorrow (waiting for feedback from class peers). This new version fixes the disappearing data issue, and makes the airport filter clearer and easier to read. I also changed the bubble graph to a line graph with line markers so that the day to day differences are more obvious. I liked the bouncing balls, but it didn't make that relationship very clear.</p>
+
+<p>I haven't figured out how to keep the animation paused when filtering by carrier or airport yet, still working to figure out how to do that.</p>
+
+<h3>
+<a id="joanna-mcadams" class="anchor" href="#joanna-mcadams" aria-hidden="true"><span class="octicon octicon-link"></span></a>JoAnna McAdams</h3>
+
+<ul>
+<li>
+<p>What do you notice in the visualization?</p>
+
+<ul>
+<li>I first noticed how much easier it was to detect trends when the years flow automatically across. Not having to take my eyes off the data or trend pattern to click on different years gave a better appreciation for gaps in info. To go back and single out a year is also simple to do.</li>
+</ul>
+</li>
+<li>
+<p>What questions do you have about the data?</p>
+
+<ul>
+<li>How to keep raw data integrity in check - i.e.: one time meaning a plane pulls away from the gate, or actually takes off?</li>
+</ul>
+</li>
+<li>
+<p>What relationships do you notice?</p>
+
+<ul>
+<li>It appears to mostly remain consistently inconsistent.</li>
+</ul>
+</li>
+<li>
+<p>What do you think is the main take-away from this visualization?</p>
+
+<ul>
+<li>Very smart, easy to read way to interpret what would normally be a very cumbersome data set. Very good to market / prove on time capabilities to consumer, or investors.</li>
+</ul>
+</li>
+<li>
+<p>Is there something you don’t understand in the graphic?</p>
+
+<ul>
+<li>Per airport numbers were a little confusing, but that may be my system may not meet requirements.</li>
+</ul>
+</li>
+<li>
+<p>Any Additions Comments:</p>
+
+<ul>
+<li>Very exciting to check this out!</li>
+</ul>
+</li>
+</ul>
+
+<h4>
+<a id="response-3" class="anchor" href="#response-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Response</h4>
+
+<p>Thanks Joey! good feedback.</p>
+
+<p>I have a new release coming later today or tomorrow that fixes the airport selector and a few other issues (like disappearing data). Hopefully that will make it clearer. While I liked the look of the bubble chart, I changed it to a line chart with line markers. It makes the day to day relationships much clearer.</p>
+
+<p>Re: "How to keep raw data integrity in check - i.e.: one time meaning a plane pulls away from the gate, or actually takes off?"</p>
+
+<p>I'm not clear on what you are asking? The raw data I based this on had multiple 'delay' timings and some (but limited) cause indicators. However, the data set itself, even filtering down to just these carriers and airports was till almost 2GB, and would never load in the browser using the tools I've been given. So I decided to just concentrate on the average arrival delay, thinking from a consumer standpoint, that is what most people would care about. I definitely see where the airlines or regulation industry would care much more on drilling down on specific causes. Is that what you were referring to?</p>
+
+<h4>
+<a id="follow-up-response" class="anchor" href="#follow-up-response" aria-hidden="true"><span class="octicon octicon-link"></span></a>Follow-up Response</h4>
+
+<p>Yes, that is what I was referring to, and it was more industry related, but given each airline had their own criteria for the definition of on time... Well, what can you do to control that?</p>
+
+<p>I am really impressed with how you tamed THAT MUCH data in one file. Very nice!</p>
 
 <h1>
 <a id="resources" class="anchor" href="#resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Resources</h1>
