@@ -59,7 +59,8 @@ I created a dimple story board which is animated by year from 2000 - 2008.  The 
 
 I also used an interactive legend by airline carrier for filtering the data points displayed, and I also created a 'chart' to handle filtering of the aggregated data by major city airports.
 
-### Final Release - Fixes
+### Final Release - Fixes - GIT Tag: Final_Release
+
 * Premature animation triggering after selecting/deselecting Carrier or Airport filters
 * Changed y-axis to originate from zero instead of allowing them to go negative
 * Changed y-axis so scale remains constant to eliminate the constant moving of the axis grids
@@ -74,14 +75,15 @@ I also used an interactive legend by airline carrier for filtering the data poin
 * Instead of removing tooltip on circle datapoints, I increased the frame refresh delay to allow tooltip display to last a little longer
 * Changed wording of 'select airports' to 'selected airports' in title and text
 
-### Release 2 - Fixes
+### Release 2 - Fixes - GIT Tag: Draft\_Release\_2
+
 * How to remove "year": 1.0m type tooltip due to MeasureAxis on "Year"?
 * Filter by Airport - when reactivating, does not re-include filtered data.  Any ideas why?
 * Make Filter by Airport text/shape more consistent with the "Year" control.
 * Feedback that yellow and orange series point colors are too close.  Changed 'yellow' color to light purple
 * Changed bubble chart to a line chart with line markers to make day to day variance more prominent.
 
-### Release 1 - Issues
+### Release 1 - Issues - GIT Tag: Draft\_Release\_1
 * How to remove "year": 1.0m type tooltip due to MeasureAxis on "Year"?
 * Filter by Airport - when reactivating, does not re-include filtered data.  Any ideas why?
 * Both Filter by Carrier Name and Filter by Airport - when activating and de-activating filters, both re-trigger a paused animation.  Any ideas how to stop this?
