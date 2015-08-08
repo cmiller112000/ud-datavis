@@ -10,6 +10,10 @@ From 2000 - 2003, you see a steady improvement in arrival delays, with even the 
 
 From a day per week standpoint, all airlines seemed to have their lowest delay times on Tuesdays and Saturdays, and their highest delay times on Thursdays and Fridays.  Which makes sense based on the typical busy travel days matching this finding.
 
+# Running the Data Visualization
+
+[Run Data Visualization!](https://rawgit.com/cmiller112000/ud-datavis/master/index.html)
+
 
 # Design
 ## Dataset - Flight Arrival and associated supplemental data
@@ -81,11 +85,6 @@ I also used an interactive legend by airline carrier for filtering the data poin
 * How to remove "year": 1.0m type tooltip due to MeasureAxis on "Year"?
 * Filter by Airport - when reactivating, does not re-include filtered data.  Any ideas why?
 * Both Filter by Carrier Name and Filter by Airport - when activating and de-activating filters, both re-trigger a paused animation.  Any ideas how to stop this?
-
-# Running the Data Visualization
-
-[Run Data Visualization!](https://rawgit.com/cmiller112000/ud-datavis/master/index.html)
-
 
 # Feedback
 ## Questions for Reviewers:
