@@ -55,10 +55,20 @@ I created a dimple story board which is animated by year from 2000 - 2008.  The 
 
 I also used an interactive legend by airline carrier for filtering the data points displayed, and I also created a 'chart' to handle filtering of the aggregated data by major city airports.
 
-### Release 1 - Issues
-* How to remove "year": 1.0m type tooltip due to MeasureAxis on "Year"?
-* Filter by Airport - when reactivating, does not re-include filtered data.  Any ideas why?
-* Both Filter by Carrier Name and Filter by Airport - when activating and de-activating filters, both re-trigger a paused animation.  Any ideas how to stop this?
+### Final Release - Fixes
+* Premature animation triggering after selecting/deselecting Carrier or Airport filters
+* Changed y-axis to originate from zero instead of allowing them to go negative
+* Changed y-axis so scale remains constant to eliminate the constant moving of the axis grids
+* Changed y-axis markings to increments of 5 to reduce ticks
+* Updated data point tooltip text to make labels more friendly
+* Removed x-axis title, since day of way names are obvious
+* Repositioned airport selector under carrier filter to keep it from getting hidden
+* Changed references to 'cities' to 'airports'
+* Moved descriptive text to below the chart, and made it part of the javascript instead of html body so it displays at same time as chart
+* Increased font/shape size of year selectors
+* Increased opacity percent of 'on' condition of airport filter to make selection/deselection more clear
+* Instead of removing tooltip on circle datapoints, I increased the frame refresh delay to allow tooltip display to last a little longer
+* Changed wording of 'select airports' to 'selected airports' in title and text
 
 ### Release 2 - Fixes
 * How to remove "year": 1.0m type tooltip due to MeasureAxis on "Year"?
@@ -66,6 +76,11 @@ I also used an interactive legend by airline carrier for filtering the data poin
 * Make Filter by Airport text/shape more consistent with the "Year" control.
 * Feedback that yellow and orange series point colors are too close.  Changed 'yellow' color to light purple
 * Changed bubble chart to a line chart with line markers to make day to day variance more prominent.
+
+### Release 1 - Issues
+* How to remove "year": 1.0m type tooltip due to MeasureAxis on "Year"?
+* Filter by Airport - when reactivating, does not re-include filtered data.  Any ideas why?
+* Both Filter by Carrier Name and Filter by Airport - when activating and de-activating filters, both re-trigger a paused animation.  Any ideas how to stop this?
 
 # Running the Data Visualization
 
@@ -84,6 +99,97 @@ I also used an interactive legend by airline carrier for filtering the data poin
 Please answer by creating an issue on my github repository following the example issue under my name:
 
 https://github.com/cmiller112000/ud-datavis/issues/
+
+
+## Release 2 Responses
+### Charlie1d
+<p>
+Hi @cheryl_592988902, thanks for posting your latest version. I've taken a look and so I'll post a few thoughts on here to encourage more discussion! I hope you don't mind that I've not posted on GitHub.
+</p>
+
+* Some things I like
+ * the use of coloured lines to represent airlines and connecting the dots so you can see a 'profile of a typical week'
+ * the interesting pattern over the week -- I had no idea that there was a consistent pattern of delays!
+ * the user instructions, so I know what to do to interact with the plot
+
+* Some things I like less
+ * The way that the y-axis moves between years. This is really distracting for me, I can't make any comparison between years.
+ * In a few places, the tooltips and axis labels names are unpolished: "AvgArrDelay" and "DayOfWeek" look like variable names rather than user-facing labels.
+ * The fact that the animation starts and continues by default unless I stop it.
+
+* Some more ideas
+ * I'd be interested in seeing the pattern in arrival delays over the whole period -- I don't feel this is currently conveyed by the animation. Perhaps another plot (average delay over the years for each airline?) or small multiples would convey this information?
+ * I think there might be too many variables involved. Day of the week, year, airline, airport combinations, delay times are all encoded here. I'm not particularly likely to stumble across a particularly interesting airport or airline without a bit of guidance of what to look for. Is your main aim to show patterns of delays through the years or through the week? Is there anything specific you're hoping to show about a certain airline or airport?
+
+### andrew_37796816420h
+<p>Hi @cheryl_592988902, I agree with the comments from @Charlie. In addition
+</p>
+<p>
+Nice chart!!
+</p>
+* ** Like **
+ * Interactive choices
+ * Open circle points - they act like hinges
+
+* Like Less
+
+ * The vertical axis movement from negative values - I guess that is arriving ahead of schedule. I think it would be ok treat this as zero because it is infrequent and your chart is one of "delays" and it begs an explanation
+strongly agree scale of the y axis -should not change - then the story of increasing delays from year to year will be more apparent
+ * The x axis ticks are distracting because they break the vertical alignment of the day of week label an the aligned points.
+your airport selector gets hidden with a more narrow browser width. Perhaps place it under the carrier filter
+ * The title says "cities" but the data is for "airports"
+try it without the horizontal grid .. I don't think the actual measurements are important. This may make the whole chart feel simpler and may make the animation feel more fluid
+ * try it with fewer y axis markings (greater intervals) - perhaps five minutes will be a more natural/intuitive increment
+
+Great!!!
+
+### Yohann16h
+<p>
+Hi @cheryl_592988902,
+</p>
+<p>
+Nice chart, the design is very good as well as the different transitions
+</p>
+* What I like :
+
+ * The animation and transitions (including the one when removing an airline)
+ * The message being shared
+
+* What I like less :
+ * I would probably put the explanation text below the graph instead
+ * The y-axis constantly changing, it's difficult to compare between years
+ * Negative y-values, you should put a minimum to 0
+ * The selection for the years and airports are fairly small, hence it's not always clear where I am at a specific time. You would probably want to increase the difference of shade when selecting an airport
+ * You may want to remove the circle tooltip while the animation is running as it goes away very quickly as the graph changes.
+ * In the title I would say "selected" instead of "select"
+
+* Questions
+ * What do you notice in the visualization?
+  * A smooth transition between years
+
+ * What questions do you have about the data?
+  * How it was collected and how outliers are being handled (cancelled flights etc..)
+
+ * What relationships do you notice?
+  * Saturday being the best performer in terms of arriving on time
+Tuesday seems to go on and off across years
+  * Southwest Airlines seems to have worked hard on their delays, going from a below average airline to a champion across the years
+
+ * What do you think is the main takeaway from this visualization?
+  * There's a lot of focus on Saturday instead of other weekdays for performance of airlines
+
+ * Is there something you don’t understand in the graphic?
+  * The negative values even though I understand that it is flights arriving before scheduled time but it's still odd
+
+<p>
+I hope this helps !
+</p>
+<p>
+Kind Regards,
+</p>
+<p>
+Yohann
+</p>
 
 ## Release 1 Responses
 
@@ -187,6 +293,7 @@ I'm not clear on what you are asking? The raw data I based this on had multiple 
 Yes, that is what I was referring to, and it was more industry related, but given each airline had their own criteria for the definition of on time... Well, what can you do to control that?
 
 I am really impressed with how you tamed THAT MUCH data in one file. Very nice!
+
 # Resources
 * http://www.d3js.org/
 * http://www.dimplejs.org/

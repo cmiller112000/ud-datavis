@@ -1,16 +1,10 @@
 <html>
-<title>Average Arrival Delay Comparisons of Select Carriers and Cities:2000-2008</title>
-<body>
-<p>The following graph examines the average flight arrival delays for the selected major airlines in specific major US destination cities between the years 2000-2008 by day of week.   </p>
-<p>To pause the animation, click the year on the left you want to focus on.  To restart animation, click it again.</p>
-<p>To remove a particular airline from the chart, select the colored legend box associated with the airline carrier's name. To add it back in, click it again.</p>
-<p>To remove a airport's data from the chart, select the airport's name. To add it back in, click it again.</p>
-</body>
+<title>Average Arrival Delay Comparisons of Selected Carriers and Airports:2000-2008</title>
 <div id="chartContainer">
   <script charset="utf-8" src="./lib/d3.min.js"></script>
   <script charset="utf-8" src="./dist/dimple.v2.1.6.min.js"></script>
   <script type="text/javascript">
-    var svg = dimple.newSvg("#chartContainer", 1300, 400);
+    var svg = dimple.newSvg("#chartContainer", 1300, 1400);
     d3.json("./data/flightdelays.json", function (data) {
 
     // Create the indicator chart on the left of the main chart for the year
@@ -26,20 +20,19 @@
       var indicatorColor = yearIndicator.defaultColors[2];
   
       var pauseState = false;
-
       // Get a unique list of Carrier Names values to use when filtering
       var filterCarriers = dimple.getUniqueValues(data, "UniqueCarrierName");
       // Get a unique list of Carrier Names values to use when filtering
       var filterAirports = dimple.getUniqueValues(data, "Dest airport");
 
       // The frame duration for the story board animation in milliseconds
-      var frame = 4000;
+      var frame = 6000;
   
     // flag indication for onTick event handler
       var firstTick = true;
   
       // Creation and setting up of 'chart' for the year selection
-      yearIndicator.setBounds(75, 70, 50, 150);
+      yearIndicator.setBounds(75, 150, 50, 150);
   
       // Add years along the y axis in ascending order
       var y = yearIndicator.addCategoryAxis("y", "Year");
@@ -70,7 +63,7 @@
       // Move the y axis text inside the plot area
       y.shapes.selectAll("text")
         .style("text-anchor", "start")
-        .style("font-size", "11px")
+        .style("font-size", "12px")
         .attr("transform", "translate(18, 0.5)");
   
       // This block adds the title. It is implemented in a d3 data
@@ -83,11 +76,29 @@
         .enter()
         .append("text")
         .attr("x", 60)
-        .attr("y", function (d, i) { return 30 + i * 12; })
+        .attr("y", function (d, i) { return 100 + i * 14; })
         .style("font-family", "sans-serif")
         .style("font-size", "10px")
         .style("color", "Black")
         .text(function (d) { return d; });
+
+      svg.selectAll("title_text")
+        .data([
+          "This graph examines the average flight arrival delays for the selected major airlines in specific major US destination Airports between the years 2000-2008 by day of week.",
+          "",          
+          "To pause the animation, click the year on the left you want to focus on.  To restart animation, click it again.",
+          "To remove a particular airline from the chart, select the colored legend box associated with the airline carrier's name. To add it back in, click it again.",
+          "To remove an airport's data from the chart, select the airport's name. To add it back in, click it again."
+          ])
+        .enter()
+        .append("text")
+        .attr("x", 30)
+        .attr("y", function (d, i) { return 500 + i * 14; })
+        .style("font-family", "sans-serif")
+        .style("font-size", "14px")
+        .style("color", "Black")
+        .text(function (d) { return d; });
+
 
     // Manually set the bar colors for the year selectors
       s.shapes
@@ -115,16 +126,32 @@
         .style("text-anchor", "middle")
         .style("font-family", "sans-serif")
         .style("font-weight", "bold")
-        .text("Average Arrival Delay for Select Airlines and Cities");
+        .text("Average Arrival Delay for Selected Airlines and Airports");
       xaxis = lines.addCategoryAxis("x", ["DayOfWeek"])
       xaxis.addOrderRule(["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]);
-
+      xaxis.showGridLines = false;
+      xaxis.title = "";
       yaxis = lines.addMeasureAxis("y", "AvgArrDelay");
       yaxis.title = "Average Arrival Delay (minutes)";
+			yaxis.ticks = 4;
       avg = lines.addSeries(["UniqueCarrierName"], dimple.plot.line)
       avg.lineMarkers = true;
       avg.addOrderRule("UniqueCarrierName");
       avg.aggregate = dimple.aggregateMethod.avg;
+//      avg.addEventHandler("mouseover", onHover);
+//      avg.addEventHandler("mouseleave", onLeave);
+      avg.getTooltipText = function (e) {
+        return [
+            "Carrier Name: " + e.aggField[0],
+            "Day of Week: " + e.cx,
+            "Average Delay (min): " + e.cy.toFixed(2)
+        ];
+      };
+
+
+//      var yVals = lines.data.map(function(val) { return val.AvgArrDelay; });
+      yaxis.overrideMin  = 0;
+      yaxis.overrideMax  = 20;
       
       filterCarriers.forEach(function (f) {
         legendColor = lines.getColor(f);
@@ -134,7 +161,7 @@
         }
       });
         
-      var myLegend = lines.addLegend(900, 60, 60, 300, "Right");
+      var myLegend = lines.addLegend(900, 30, 60, 240, "Right");
       lines.draw();
         
      // This is a critical step.  By doing this we orphan the legend. This
@@ -195,7 +222,7 @@
         });
 
         // Place the airport selector indicator bar chart to the right
-        airportIndicator.setBounds(1000, 70, 200, 250);
+        airportIndicator.setBounds(800, 140, 185, 250);
 
         // Add destination airport name along the y axis
         var y2 = airportIndicator.addCategoryAxis("y", "Dest airport");
@@ -210,7 +237,7 @@
 	    // Manually set the bar colors for the year selectors
 	      s2.getTooltipText = function (e) {
 	        return [
-	            "Dest airport: " + e.cy
+	            "Airport: " + e.cy
 	        ];
 	      };
         s2.addEventHandler("click", onClick2);
@@ -226,7 +253,7 @@
         // Move the y axis text inside the plot area
         y2.shapes.selectAll("text")
          .style("text-anchor", "start")
-         .style("font-size", "11px")
+         .style("font-size", "10px")
          .attr("transform", "translate(18, 0.5)");
 
       // This block adds the title. It is implemented in a d3 data
@@ -236,8 +263,8 @@
         .data(["Filter By: Airport"])
            .enter()
            .append("text")
-           .attr("x", 1000)
-           .attr("y", function (d, i) { return 30 + i * 12; })
+           .attr("x", 800)
+           .attr("y", function (d, i) { return 130 + i * 14; })
            .style("font-family", "sans-serif")
            .style("font-size", "10px")
            .style("color", "Black")
@@ -248,7 +275,7 @@
           .attr("ry", 10)
           .style("fill", defaultColor.fill) 
           .style("stroke", defaultColor.stroke) 
-          .style("opacity", 0.4);
+          .style("opacity", 0.6);
 
         // Add a storyboard to the main chart and set the tick event
         var story = lines.setStoryboard("Year", onTick);
@@ -323,7 +350,7 @@
             d3.select(selobj[0]).style("opacity", 0.2);
           } else {
             newFilters.push(e.yValue);
-            d3.select(selobj[0]).style("opacity", 0.4);
+            d3.select(selobj[0]).style("opacity", 0.6);
           }
           console.log(selobj[0].style.opacity);
           // Update the filters
@@ -341,7 +368,21 @@
             story.pauseAnimation()
           }
         }
+	    function onHover(e) {
+	      dimple._showPointTooltip(e, this, lines, avg);
+	      lines.draw();
+	      story.pauseAnimation();
+	    };
+	    function onLeave(e) {
+	      if (pauseState === false) {
+	        story.startAnimation();
+	      } else {
+          lines.draw();
+          story.pauseAnimation();
+	      }
+	    };    
     });
+        
   </script>
 </div>
 </html>
