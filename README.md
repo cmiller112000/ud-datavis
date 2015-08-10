@@ -67,6 +67,10 @@ I also used an interactive legend by airline carrier for filtering the data poin
 * Limited the number of ticks to 5 along the new bar chart y axis
 * Updated this README.md file with new feedback, as well as links to prior feedback from udacity forum reviewers as well as individual reviewers.
 
+<p>
+Note:  Did not change the d3 and dimple js library references to us the internet links as they were not working properly and timing out
+</p>
+
 ### Final Release - Fixes - GIT Tag: Final_Release
 
 * Premature animation triggering after selecting/deselecting Carrier or Airport filters
