@@ -120,15 +120,24 @@ Awesome Job!. Javascript is well implemented, good use of semicolons and indenta
 
 However there are some issues with the HTML and how javascript libraries are call. Following I review the different issues:
 
-Javascript libraries import: Instead of working with d3 local files, you can simple call d3 library from their website (see line below). Please have a look at this link for further information.
-<script type="text/javascript" src="d3.v2.min.js"></script>
-DOCTYPE: this line must be included in order to allow browser to properly render the file, more info here
-<!DOCTYPE html>
-Encoding: for the browser to load the required chart set, you need to include the line below, see more info here:
-<meta charset="UTF-8">
-html content: it must be included in the body, please have a look at this link for a reference of a html template.
+Javascript libraries import: Instead of working with d3 local files, you can simple call d3 library from their website (see line below). Please have a look at this link for further information.</p>
+https://www.dashingd3js.com/d3js-first-steps
+
+<p>
+DOCTYPE: this line must be included in order to allow browser to properly render the file, more info here</p>
+http://www.w3schools.com/tags/tag_doctype.asp
+<p>
+Encoding: for the browser to load the required chart set, you need to include the line below, see more info here:</p>
+http://www.w3schools.com/html/html_charset.asp
+
+<p>
+html content: it must be included in the body, please have a look at this link for a reference of a html template.</p>
+http://www.w3schools.com/html/html5_intro.asp
+
+<p>
 Once you edit your file, you can test your html using this powerful tool
 </p>
+https://validator.w3.org/
 
 <p>
 Reviewer Comments
