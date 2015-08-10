@@ -1,8 +1,12 @@
+<!DOCTYPE html>
 <html>
+<head>
+<meta charset="UTF-8">
 <title>Average Arrival Delay Comparisons of Selected Carriers and Airports:2000-2008</title>
+</head>
 <div id="chartContainer">
-  <script charset="utf-8" src="./lib/d3.min.js"></script>
-  <script charset="utf-8" src="./dist/dimple.v2.1.6.min.js"></script>
+  <script type="text/javascript"  src="./lib/d3.min.js"></script>
+  <script type="text/javascript"  src="./dist/dimple.v2.1.6.min.js"></script>
   <script type="text/javascript">
     var svg = dimple.newSvg("#chartContainer", 1300, 1400);
     d3.json("./data/flightdelays.json", function (data) {
@@ -127,43 +131,60 @@
         .style("font-family", "sans-serif")
         .style("font-weight", "bold")
         .text("Average Arrival Delay for Selected Airlines and Airports");
-      xaxis = lines.addCategoryAxis("x", ["DayOfWeek"])
+      xaxis = lines.addCategoryAxis("x", ["DayOfWeek","UniqueCarrierName"])
+      xaxis.addGroupOrderRule("UniqueCarrierName");
       xaxis.addOrderRule(["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]);
       xaxis.showGridLines = false;
       xaxis.title = "";
       yaxis = lines.addMeasureAxis("y", "AvgArrDelay");
-      yaxis.title = "Average Arrival Delay (minutes)";
+      yaxis.title = "Line Chart - Average Arrival Delay/Day (minutes)";
 			yaxis.ticks = 4;
-      avg = lines.addSeries(["UniqueCarrierName"], dimple.plot.line)
+      yaxis.overrideMin  = 0;
+      yaxis.overrideMax  = 20;
+      
+			y2axis = lines.addMeasureAxis("y","TotalDelayByDayCount");
+			y2axis.title = "Bar Chart - Average # Flights/Day";
+      y2axis.ticks = 5;
+
+      avgflt = lines.addSeries(["UniqueCarrierName"], dimple.plot.bar, [xaxis,y2axis]);
+      avgflt.addOrderRule("UniqueCarrierName");
+      avgflt.aggregate = dimple.aggregateMethod.avg;
+      
+      avgflt.getTooltipText = function (e) {
+        return [
+            "Carrier Name: " + e.aggField[0],
+            "Day of Week: " + e.cx,
+            "Average Flights/Day: " + e.cy.toFixed(2)
+        ];
+      };
+
+      avg = lines.addSeries(["UniqueCarrierName"], dimple.plot.line, [xaxis,yaxis]);
       avg.lineMarkers = true;
       avg.addOrderRule("UniqueCarrierName");
       avg.aggregate = dimple.aggregateMethod.avg;
-//      avg.addEventHandler("mouseover", onHover);
-//      avg.addEventHandler("mouseleave", onLeave);
       avg.getTooltipText = function (e) {
         return [
             "Carrier Name: " + e.aggField[0],
             "Day of Week: " + e.cx,
-            "Average Delay (min): " + e.cy.toFixed(2)
+            "Average Delay/Day (min): " + e.cy.toFixed(2)
         ];
       };
 
 
-//      var yVals = lines.data.map(function(val) { return val.AvgArrDelay; });
-      yaxis.overrideMin  = 0;
-      yaxis.overrideMax  = 20;
-      
       filterCarriers.forEach(function (f) {
         legendColor = lines.getColor(f);
-        console.log(f + ":" + legendColor.fill);
+//        console.log(f + ":" + legendColor.fill);
         if (legendColor.fill === "#FFED6F") {
           lines.assignColor(f,"#BF5FFF");
         }
       });
         
-      var myLegend = lines.addLegend(900, 30, 60, 240, "Right");
+      var myLegend = lines.addLegend(950, 30, 60, 240, "Right");
       lines.draw();
         
+      avgflt.shapes
+        .style("opacity", 0.6);
+
      // This is a critical step.  By doing this we orphan the legend. This
      // means it will not respond to graph updates.  Without this the legend
      // will redraw when the chart refreshes removing the unchecked item and
@@ -177,7 +198,7 @@
         .data(["Filter by: Carrier Name"])
         .enter()
         .append("text")
-          .attr("x", 800)
+          .attr("x", 850)
           .attr("y", function (d, i) { return 30 + i * 14; })
           .style("font-family", "sans-serif")
           .style("font-size", "10px")
@@ -222,7 +243,7 @@
         });
 
         // Place the airport selector indicator bar chart to the right
-        airportIndicator.setBounds(800, 140, 185, 250);
+        airportIndicator.setBounds(850, 140, 185, 250);
 
         // Add destination airport name along the y axis
         var y2 = airportIndicator.addCategoryAxis("y", "Dest airport");
@@ -263,7 +284,7 @@
         .data(["Filter By: Airport"])
            .enter()
            .append("text")
-           .attr("x", 800)
+           .attr("x", 850)
            .attr("y", function (d, i) { return 130 + i * 14; })
            .style("font-family", "sans-serif")
            .style("font-size", "10px")
@@ -335,9 +356,9 @@
           var newFilters = [];
           // If the filters contain the clicked shape hide it
           //  console.log(e.yValue);
-          console.log(e.selectedShape[0]);
+//          console.log(e.selectedShape[0]);
           selobj = e.selectedShape[0];
-          console.log(selobj[0].style.opacity);
+//          console.log(selobj[0].style.opacity);
           filterAirports.forEach(function (f) {
             if (f === e.yValue && selobj[0].style.opacity != 0.2) {
               hide = true;

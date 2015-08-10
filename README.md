@@ -59,6 +59,14 @@ I created a dimple story board which is animated by year from 2000 - 2008.  The 
 
 I also used an interactive legend by airline carrier for filtering the data points displayed, and I also created a 'chart' to handle filtering of the aggregated data by major city airports.
 
+### Final Release 2 - Fixes Per Udacity Reviewer Feedback - GIT Tag: Final\_Release\_2
+* As per reviewer suggestion, I added a secondary bar chart series based on Average Flights Per Day to make this more of an 'Explanatory' Visualization. 
+* I changed the xaxis to categorize by Day of Week and Unique Carrier Name, ensuring sort order was correct
+* Made bar chart shading opacity at 0.6 so that the coloring did not overshaddow the lines in the primary line chart
+* Updated y-axis titles to distinguish which scale was for the line chart, and which scale was for the bar chart
+* Limited the number of ticks to 5 along the new bar chart y axis
+* Updated this README.md file with new feedback, as well as links to prior feedback from udacity forum reviewers as well as individual reviewers.
+
 ### Final Release - Fixes - GIT Tag: Final_Release
 
 * Premature animation triggering after selecting/deselecting Carrier or Airport filters
@@ -101,8 +109,44 @@ Please answer by creating an issue on my github repository following the example
 
 https://github.com/cmiller112000/ud-datavis/issues/
 
+## Final Release Responses
+## Udacity Reviewer
+https://review.udacity.com/#!/reviews/36166
+
+
+<p>
+Reviewer Comments
+Awesome Job!. Javascript is well implemented, good use of semicolons and indentation.
+
+However there are some issues with the HTML and how javascript libraries are call. Following I review the different issues:
+
+Javascript libraries import: Instead of working with d3 local files, you can simple call d3 library from their website (see line below). Please have a look at this link for further information.
+\<script type="text/javascript" src="d3.v2.min.js"\>\</script\>
+DOCTYPE: this line must be included in order to allow browser to properly render the file, more info here
+\<!DOCTYPE html\>
+Encoding: for the browser to load the required chart set, you need to include the line below, see more info here:
+\<meta charset="UTF-8"\>
+html content: it must be included in the body, please have a look at this link for a reference of a html template.
+Once you edit your file, you can test your html using this powerful tool
+</p>
+
+<p>
+Reviewer Comments
+This is a great visualization, you were able to include a lot of information and still make it look great. By selecting airlines, airports and years, viewers can really do a deep exploration of the data. Your d3 code is coded well, and you got some great feedback, well done!.
+
+When I look at the chart, I understand how average delay times behave along the week. But that's really an exploratory visualization rather than explanatory. What I can't tell from this plot is what drives the average delay times along the week. In your summary I can read: "From a day per week standpoint, all airlines seemed to have their lowest delay times on Tuesdays and Saturdays, and their highest delay times on Thursdays and Fridays. Which makes sense based on the typical busy travel days matching this finding.", so it seems delays are related with average flights per day. This is actually the key I miss in your visualization. By adding this piece of information your visualization now becomes explanatory, users can now understand why delay times behave in such way.
+
+STEPS TO PASS THIS SECTION:
+
+Incorporate the average flight number per day in your chart.
+</p>
 
 ## Release 2 Responses
+### Udacity Discussion Forum Feedback
+https://discussions.udacity.com/t/request-project-6-feedback-average-flight-delays-for-select-airlines-2000-2008/27856/7
+### Individual Feedback Logged to GitHub Project:
+https://github.com/cmiller112000/ud-datavis/issues
+
 ### Charlie1d
 <p>
 Hi @cheryl_592988902, thanks for posting your latest version. I've taken a look and so I'll post a few thoughts on here to encourage more discussion! I hope you don't mind that I've not posted on GitHub.
