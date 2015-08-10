@@ -117,9 +117,11 @@ https://review.udacity.com/#!/reviews/36166
 <p>
 Reviewer Comments
 Awesome Job!. Javascript is well implemented, good use of semicolons and indentation.
-
+</p>
+<p>
 However there are some issues with the HTML and how javascript libraries are call. Following I review the different issues:
-
+</p>
+<p>
 Javascript libraries import: Instead of working with d3 local files, you can simple call d3 library from their website (see line below). Please have a look at this link for further information.</p>
 https://www.dashingd3js.com/d3js-first-steps
 
