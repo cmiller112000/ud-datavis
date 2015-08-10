@@ -173,6 +173,18 @@
 <p>I also used an interactive legend by airline carrier for filtering the data points displayed, and I also created a 'chart' to handle filtering of the aggregated data by major city airports.</p>
 
 <h3>
+<a id="final-release-2---fixes-per-udacity-reviewer-feedback---git-tag-final_release_2" class="anchor" href="#final-release-2---fixes-per-udacity-reviewer-feedback---git-tag-final_release_2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Final Release 2 - Fixes Per Udacity Reviewer Feedback - GIT Tag: Final_Release_2</h3>
+
+<ul>
+<li>As per reviewer suggestion, I added a secondary bar chart series based on Average Flights Per Day to make this more of an 'Explanatory' Visualization. </li>
+<li>I changed the xaxis to categorize by Day of Week and Unique Carrier Name, ensuring sort order was correct</li>
+<li>Made bar chart shading opacity at 0.6 so that the coloring did not overshaddow the lines in the primary line chart</li>
+<li>Updated y-axis titles to distinguish which scale was for the line chart, and which scale was for the bar chart</li>
+<li>Limited the number of ticks to 5 along the new bar chart y axis</li>
+<li>Updated this README.md file with new feedback, as well as links to prior feedback from udacity forum reviewers as well as individual reviewers.</li>
+</ul>
+
+<h3>
 <a id="final-release---fixes---git-tag-final_release" class="anchor" href="#final-release---fixes---git-tag-final_release" aria-hidden="true"><span class="octicon octicon-link"></span></a>Final Release - Fixes - GIT Tag: Final_Release</h3>
 
 <ul>
@@ -230,7 +242,66 @@
 <p><a href="https://github.com/cmiller112000/ud-datavis/issues/">https://github.com/cmiller112000/ud-datavis/issues/</a></p>
 
 <h2>
+<a id="final-release-responses" class="anchor" href="#final-release-responses" aria-hidden="true"><span class="octicon octicon-link"></span></a>Final Release Responses</h2>
+
+<h2>
+<a id="udacity-reviewer" class="anchor" href="#udacity-reviewer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Udacity Reviewer</h2>
+
+<p><a href="https://review.udacity.com/#!/reviews/36166">https://review.udacity.com/#!/reviews/36166</a></p>
+
+<p>
+Reviewer Comments
+Awesome Job!. Javascript is well implemented, good use of semicolons and indentation.
+</p>
+
+<p>
+However there are some issues with the HTML and how javascript libraries are call. Following I review the different issues:
+</p>
+
+<p>
+Javascript libraries import: Instead of working with d3 local files, you can simple call d3 library from their website (see line below). Please have a look at this link for further information.</p>
+https://www.dashingd3js.com/d3js-first-steps
+
+<p>
+DOCTYPE: this line must be included in order to allow browser to properly render the file, more info here</p>
+http://www.w3schools.com/tags/tag_doctype.asp
+<p>
+Encoding: for the browser to load the required chart set, you need to include the line below, see more info here:</p>
+http://www.w3schools.com/html/html_charset.asp
+
+<p>
+html content: it must be included in the body, please have a look at this link for a reference of a html template.</p>
+http://www.w3schools.com/html/html5_intro.asp
+
+<p>
+Once you edit your file, you can test your html using this powerful tool
+</p>
+
+<p><a href="https://validator.w3.org/">https://validator.w3.org/</a></p>
+
+<p>
+Reviewer Comments
+This is a great visualization, you were able to include a lot of information and still make it look great. By selecting airlines, airports and years, viewers can really do a deep exploration of the data. Your d3 code is coded well, and you got some great feedback, well done!.
+
+When I look at the chart, I understand how average delay times behave along the week. But that's really an exploratory visualization rather than explanatory. What I can't tell from this plot is what drives the average delay times along the week. In your summary I can read: "From a day per week standpoint, all airlines seemed to have their lowest delay times on Tuesdays and Saturdays, and their highest delay times on Thursdays and Fridays. Which makes sense based on the typical busy travel days matching this finding.", so it seems delays are related with average flights per day. This is actually the key I miss in your visualization. By adding this piece of information your visualization now becomes explanatory, users can now understand why delay times behave in such way.
+
+STEPS TO PASS THIS SECTION:
+
+Incorporate the average flight number per day in your chart.
+</p>
+
+<h2>
 <a id="release-2-responses" class="anchor" href="#release-2-responses" aria-hidden="true"><span class="octicon octicon-link"></span></a>Release 2 Responses</h2>
+
+<h3>
+<a id="udacity-discussion-forum-feedback" class="anchor" href="#udacity-discussion-forum-feedback" aria-hidden="true"><span class="octicon octicon-link"></span></a>Udacity Discussion Forum Feedback</h3>
+
+<p><a href="https://discussions.udacity.com/t/request-project-6-feedback-average-flight-delays-for-select-airlines-2000-2008/27856/7">https://discussions.udacity.com/t/request-project-6-feedback-average-flight-delays-for-select-airlines-2000-2008/27856/7</a></p>
+
+<h3>
+<a id="individual-feedback-logged-to-github-project" class="anchor" href="#individual-feedback-logged-to-github-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Individual Feedback Logged to GitHub Project:</h3>
+
+<p><a href="https://github.com/cmiller112000/ud-datavis/issues">https://github.com/cmiller112000/ud-datavis/issues</a></p>
 
 <h3>
 <a id="charlie1d" class="anchor" href="#charlie1d" aria-hidden="true"><span class="octicon octicon-link"></span></a>Charlie1d</h3>
